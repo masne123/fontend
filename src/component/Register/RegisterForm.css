@@ -1,0 +1,86 @@
+/* RegisterForm.css */
+
+.register-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #dcdfe4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(182, 23, 23, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+    font-size: 35px;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-wrap: wrap; /* Ensures the fields wrap within the container */
+    justify-content: space-between;
+  }
+  
+  form div {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 45%; /* To give space for 2 fields per row */
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #131111;
+  }
+  
+  input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: #007bff;
+  }
+  
+  button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Full-width button */
+  }
+  
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+  
+  p {
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  p[style*="color: red"] {
+    color: #e74c3c;
+  }
+  
+  p[style*="color: green"] {
+    color: #2ecc71;
+  }
+  
