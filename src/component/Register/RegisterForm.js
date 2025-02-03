@@ -1,7 +1,7 @@
-// HII NI SEHEMU YA USAJILI 
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../Register/RegisterForm.css';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -10,13 +10,13 @@ const RegisterForm = () => {
     email: '',
     phone_number: '',
     address: '',
-    age: '',
+    password: '', 
   });
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const [loading, setLoading] = useState(false);
 
-  // Handle form input changes
+  const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const  navigate =  useNavigate()
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -25,32 +25,37 @@ const RegisterForm = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage('');
-    setSuccessMessage('');
+    navigate('/')
 
     try {
-      // Send the POST request to your Django API
-      const response = await axios.post('http://127.0.0.1:8000/api/customers/', formData);
-      
-      // Handle success
-      if (response.status === 201) {
-        setSuccessMessage('Registration successful!');
+      const response = await axios.post('https://backend-up33.onrender.com/api/register/', formData); 
+
+     
+      if (response.data.status === 'ok') {
+        
+        alert('Registration successful!');
+        
+       
         setFormData({
           first_name: '',
           last_name: '',
           email: '',
           phone_number: '',
           address: '',
-          age: '',
+          password: '', 
         });
       }
     } catch (error) {
-      // Handle error
-      setErrorMessage('Error during registration. Please try again.');
+      if (error.response && error.response.status === 400) {
+       
+        setErrorMessage('Email already exists. Please use a different email.');
+      } else {
+        setErrorMessage('Error during registration. Please try again.');
+      }
       console.error(error);
     } finally {
       setLoading(false);
@@ -62,8 +67,8 @@ const RegisterForm = () => {
       <h2>Register</h2>
 
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
 
+      
       <form onSubmit={handleSubmit}>
         <div>
           <label>First Name:</label>
@@ -116,16 +121,18 @@ const RegisterForm = () => {
           />
         </div>
         <div>
-          <label>Age:</label>
+          <label>Password:</label>
           <input
-            type="number"
-            name="age"
-            value={formData.age}
+            type="password"
+            name="password"
+            value={formData.password}
             onChange={handleChange}
             required
           />
         </div>
-        <button type="submit" disabled={loading}>
+
+     
+        <button type="submit"  disabled={loading}>
           {loading ? 'Registering...' : 'Register'}
         </button>
       </form>

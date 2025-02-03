@@ -108,6 +108,7 @@ h1, h2, h3 {
 
 .footer p {
   font-size: 14px;
+  color: rgb(55, 129, 172);
 }
 
 /* Luxury Styles for Buttons, Forms, etc. */
@@ -158,11 +159,6 @@ input:focus, textarea:focus {
     padding: 20px;
   }
 }
-
-
-
-
-
 
 /* Main Content Section */
 .main-content {
@@ -322,11 +318,6 @@ button {
 button:hover {
   background-color: #e6b800;
 }
-
-
-
-
-
 
 /* Modal Styles */
 .modal-overlay {
